@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Evaluación</title>
+    <link rel="stylesheet" href="/estatic/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Formulario de Evaluación</h1>
+            <p id="fecha"></p>
+        </header>
+
+        <section id="formulario">
+            <div class="input-group">
+                <label for="cedulaEvaluado">Cédula del Evaluado:</label>
+                <input type="text" id="cedulaEvaluado" required>
+            </div>
+            <div class="input-group">
+                <label for="cedulaEvaluador">Cédula del Evaluador:</label>
+                <input type="text" id="cedulaEvaluador" required>
+            </div>
+            <button id="btnVerificar">Verificar</button>
+        </section>
+
+        <section id="info" class="hidden">
+            <h2>Información del Evaluado</h2>
+            <p><strong>Nombre:</strong> <span id="nombreEmpleado"></span></p>
+            <p><strong>Cédula:</strong> <span id="cedulaEmpleado"></span></p>
+            <p><strong>Puesto:</strong> <span id="puestoEmpleado"></span></p>
+            <p><strong>Área:</strong> <span id="areaEmpleado"></span></p>
+            <p><strong>Fecha de Ingreso:</strong> <span id="fechaIngreso"></span></p>
+
+            <h2>Datos del Jefe Inmediato</h2>
+            <p><strong>Nombre:</strong> <span id="nombreJefe"></span></p>
+            <p><strong>Puesto:</strong> <span id="puestoJefe"></span></p>
+            <p><strong>Área:</strong> <span id="areaJefe"></span></p>
+
+            <button id="btnSiguiente" class="hidden">Siguiente</button>
+        </section>
+
+        <!-- Evaluaciones -->
+        <section id="evaluacion" class="hidden collapsible-section">
+            <h2 class="collapsible">Evaluación Integral <span class="toggle-btn">▼</span></h2>
+            <div class="content">
+                <div class="pregunta">
+                    <label>Conocimiento del trabajo: Comprensión y entendimiento de las tareas.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Responsabilidad: Compromiso en la realización de las tareas y el resultado de las mismas.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Búsqueda de la Excelencia: Compromiso con las cosas bien hechas  y las ganas por mejorar.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Aceptación de normas y políticas: Disposición para entender, acatar y actuardentro de las directrices y normas de la empresa.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Habilidades sociales: Colaboración espontánea y capacidad para establecer y mantener relaciones cordiales y respetuosas con los demás.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Trabajo en equipo: Capacidad de trabajar cooperativamente y de manera sencilla con otros, dentro y fuera de su área de trabajo.(3pts)</label>
+                    <select class="evaluacion-integral">
+                        <option value="0">--SELECCIONE--</option>
+                        <option value="0">No Demostró</option>
+                        <option value="1.5">Demostró Parcialmente</option>
+                        <option value="3">Demostró</option>
+                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+                    </select>
+                </div>
+                <div id="resultadoEvaluacionIntegral" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
+                <button class="btn-siguiente" data-target="evaluacion2">Siguiente</button>
+            </div>
+        </section>
+
+        <section id="evaluacion2" class="hidden collapsible-section">
+            <h2 class="collapsible">Evaluación de Competencias Profesionales <span class="toggle-btn">▼</span></h2>
+            <div class="content">
+                <table class="evaluacion-tabla">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>No demostró (0 puntos)</th>
+                            <th>Demostró parcial (7.5 puntos)</th>
+                            <th>Demostró (15 puntos)</th>
+                            <th>Demostró total (15pts)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Comportamiento individual</td>
+                            <td><input type="radio" name="calidad_trabajo" value="0"><p>Su comportamiento es inestable. Sus reacciones son imprevisibles y no demuestra madurez emocional.</p></td>
+                            <td><input type="radio" name="calidad_trabajo" value="7.5"><p>Muestra un comportamiento acorde en algunas situaciones, pero con áreas de mejora. Se percibe neutral o pasivo en la mayoría de las situaciones.</p></td>
+                            <td><input type="radio" name="calidad_trabajo" value="15"><p>Tiene un comportamiento estable, afronta situaciones con calma y madurez. Demuestra las competencias y la actitud requeridas para el puesto.</p></td>
+                            <td><input type="radio" name="calidad_trabajo" value="15" data-estrella="true"><p>Es emocionalmente inteligente y proactivo.Se le percibe con alto potencial de desarrollo dentro de la empresa.</p></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Calidad de trabajo</td>
+                            <td><input type="radio" name="comportamiento_individual" value="0"><p>La calidad de su trabajo es deficiente y no cumple con el mínimo requerido.Su desempeño no alcanza los estándares esperados.</p></td>
+                            <td><input type="radio" name="comportamiento_individual" value="7.5"><p>Su responsabilidad en las labores es limitada; se evidencian tareas incompletas, poco seguimiento o falta de orden. Cumple con su trabajo en términos básicos, con calidad y resultados acordes a lo esperado, pero sin destacar.</p></td>
+                            <td><input type="radio" name="comportamiento_individual" value="15"><p>Se esmera en lograr calidad en su trabajo y demuestra compromiso. Asume su responsabilidad y realiza un seguimiento adecuado de sus tareas.</p></td>
+                            <td><input type="radio" name="comportamiento_individual" value="15" data-estrella="true"><p>Aporta ideas valiosas para mejorar la gestión y genera un impacto positivo. Se le puede confiar plenamente alguna labor, ya que su trabajo agrega valor y puede superar expectativas.</p></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Relaciones con otros</td>
+                            <td><input type="radio" name="relaciones_otros" value="0"><p>Frecuentemente tiene problemas y fricciones con sus compañeros de trabajo. No se acopla al grupo ni facilita el trabajo en equipo.</p></td>
+                            <td><input type="radio" name="relaciones_otros" value="7.5"><p>En algunas ocasiones tiene dificultades para relacionarse con otras personas o genera disputas.Mantiene relaciones cordiales con sus compañeros y logra adaptarse al grupo, aunque sin un impacto significativo.</p></td>
+                            <td><input type="radio" name="relaciones_otros" value="15"><p>Posee facilidad para establecer relaciones cordiales y trabajar en equipo. Su personalidad es agradable y mantiene un ambiente colaborativo.</p></td>
+                            <td><input type="radio" name="relaciones_otros" value="15" data-estrella="true"><p>Actúa como un líder de integración en el equipo. Fomenta y mantiene buenas relaciones interpersonales de manera constante.</p></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Asimilación y conocimientos técnicos</td>
+                            <td><input type="radio" name="asimilacion_conocimientos" value="0"><p>No logra retener conceptos o explicaciones dadas. Ejecuta las tareas de manera diferente a lo indicado, sin apegarse a los procedimientos establecidos.</p></td>
+                            <td><input type="radio" name="asimilacion_conocimientos" value="7.5"><p>Muestra dificultades para aprender y asimilar los procedimientos de trabajo. Requiere asistencia frecuente para llevar a la práctica los conocimientos adquiridos.</p></td>
+                            <td><input type="radio" name="asimilacion_conocimientos" value="15"><p>Ha logrado asimilar y ejecutar su rol de trabajo de manera adecuada. Busca aclarar sus dudas oportunamente y ejecuta sus labores con poca asistencia.</p></td>
+                            <td><input type="radio" name="asimilacion_conocimientos" value="15" data-estrella="true"><p>Aprende y se adapta rápidamente a nuevos conceptos con mínima asistencia. Muestra una actitud de aprendizaje continuo y autonomía en la ejecución de tareas.</p></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Adaptabilidad</td>
+                            <td><input type="radio" name="adaptabilidad" value="0"><p>Se adapta con dificultad al trabajo, prácticas o labores establecidas. No encaja dentro del medio ambiente laboral ni con la cultura organizacional.</p></td>
+                            <td><input type="radio" name="adaptabilidad" value="7.5"><p>En algunas ocasiones se adapta con facilidad, pero le falta flexibilidad y disposición para acoplarse completamente a la cultura. Ha sido capaz de superar algunas dificultades del entorno laboral, pero aún enfrenta retos de adaptación.</p></td>
+                            <td><input type="radio" name="adaptabilidad" value="15"><p>Se ha adaptado muy bien al trabajo, prácticas y labores establecidas. Desempeña su rol como si fuera un colaborador con mayor antigüedad.</p></td>
+                            <td><input type="radio" name="adaptabilidad" value="15" data-estrella="true"><p>Asimila el entorno y la dinámica de la empresa con facilidad. Puede llegar a ser un líder que fomente la integración y los valores de la cultura organizacional.</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Comentarios</p>
+                <input type="text" id="comentario" required>
+                <div id="resultado" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
+                <button class="btn-siguiente" data-target="evaluacion3">Siguiente</button>
+            </div>
+        </section>
+
+        <section id="evaluacion3" class="hidden collapsible-section">
+            <h2 class="collapsible">Desempeño y desenvolvimiento general durante el período.<span class="toggle-btn">▼</span></h2>
+            <div class="content">
+                <div class="pregunta">
+                    <label>Descripción:</label>
+                    <select>
+                        <option>--SELECCIONE--</option>
+                        <option>Crítica / Deficiente</option>
+                        <option>Regular / Insatisfactoria</option>
+                        <option>Buena /Aceptable</option>
+                        <option>Muy Buena / Satisfactorio</option>
+                        <option>Excelente/Muy satisfactoria 
+                        </option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label> ¿Considera usted al colaborador un buen prospecto para este puesto?</label>
+                    <select>
+                        <option>--SELECCIONE--</option>
+                        <option>Si</option>
+                        <option>No</option>
+                    </select>
+                </div>
+
+                <div class="pregunta">
+                    <label>Criterío del jefe inmediato: De acuerdo con lo evaluado ¿El funcionario es apto para continuar en el puesto?</label>
+                    <select>
+                        <option>--SELECCIONE--</option>
+                        <option>Si</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <button class="btn-siguiente" data-target="evaluacion4">Siguiente</button>
+            </div>
+        </section>
+
+        <section id="evaluacion4" class="hidden collapsible-section">
+            <h2 class="collapsible">Justificación final <span class="toggle-btn">▼</span></h2>
+            <div class="content">
+                <p>Proporcione una evaluación objetiva y detallada sobre las áreas en las que el colaborador podría desarrollar o mejorar habilidades y características. Asegúrese de que la retroalimentación esté claramente expresada por escrito, abarcando aspectos específicos de su desempeño y experiencia hasta la fecha.</p>
+                <input type="text" id="justificación" required>
+                <button id="btnFinalizar">Finalizar Evaluación</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="/estatic/script.js"></script>
+</body>
+</html>
