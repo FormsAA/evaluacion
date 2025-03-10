@@ -39,7 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Evento para actualizar la nota en tiempo real
+    // Eventos para calcular notas en tiempo real
+    document.querySelectorAll(".evaluacion-integral").forEach(select => {
+        select.addEventListener("change", calcularNotaEvaluacionIntegral);
+    });
+
     document.querySelectorAll("input[type='radio']").forEach(radio => {
         radio.addEventListener("change", calcularNota);
     });
@@ -102,7 +106,35 @@ function mostrarEvaluacion() {
     document.getElementById("evaluacion").classList.remove("hidden");
 }
 
-// Función para calcular la nota y mostrar estrellas
+// Función para calcular la nota de Evaluación Integral
+function calcularNotaEvaluacionIntegral() {
+    let totalPuntos = 0;
+    let estrellas = 0;
+    let maxPuntos = 18; // 6 preguntas con opción máxima de 3 pts cada una
+
+    // Obtener todos los selects seleccionados
+    document.querySelectorAll(".evaluacion-integral").forEach(select => {
+        let opcionSeleccionada = select.options[select.selectedIndex];
+        let valor = parseFloat(opcionSeleccionada.value);
+        totalPuntos += valor;
+
+        // Si la opción tiene estrella, sumamos una
+        if (opcionSeleccionada.dataset.estrella === "true") {
+            estrellas++;
+        }
+    });
+
+    // Convertimos el conteo de estrellas en emojis
+    let estrellasStr = "⭐".repeat(estrellas);
+
+    // Mostrar la nota y estrellas en pantalla
+    document.getElementById("resultadoEvaluacionIntegral").innerHTML = `
+        <p><strong>Nota final (Evaluación Integral):</strong> ${totalPuntos} / ${maxPuntos}</p>
+        <p><strong>Calificación en estrellas:</strong> ${estrellasStr || "Sin estrellas"}</p>
+    `;
+}
+
+// Función para calcular la nota de Competencias Profesionales
 function calcularNota() {
     let totalPuntos = 0;
     let estrellas = 0;
@@ -113,7 +145,7 @@ function calcularNota() {
         let valor = parseFloat(radio.value);
         totalPuntos += valor;
 
-        // Si la opción seleccionada tiene estrella, se suma una estrella
+        // Si la opción seleccionada tiene estrella, sumamos una estrella
         if (radio.dataset.estrella === "true") {
             estrellas++;
         }
@@ -127,35 +159,4 @@ function calcularNota() {
         <p><strong>Nota final:</strong> ${totalPuntos} / ${maxPuntos}</p>
         <p><strong>Cantidad de estrellas:</strong> ${estrellasStr || "Sin estrellas"}</p>
     `;
-function calcularNotaEvaluacionIntegral() {
-    let totalPuntos = 0;
-    let estrellas = 0;
-    let maxPuntos = 18; // 6 preguntas con opción máxima de 3 pts cada una
-    
-    // Obtener todos los selects seleccionados
-    document.querySelectorAll(".evaluacion-integral").forEach(select => {
-        let opcionSeleccionada = select.options[select.selectedIndex];
-        let valor = parseFloat(opcionSeleccionada.value);
-        totalPuntos += valor;
-    
-        // Si la opción tiene estrella, sumamos una
-        if (opcionSeleccionada.dataset.estrella === "true") {
-            estrellas++;
-        }
-    });
-    
-        // Convertimos el conteo de estrellas en emojis
-    let estrellasStr = "⭐".repeat(estrellas);
-    
-    // Mostrar la nota y estrellas en pantalla
-    document.getElementById("resultadoEvaluacionIntegral").innerHTML = `
-        <p><strong>Nota final (Evaluación Integral):</strong> ${totalPuntos} / ${maxPuntos}</p>
-        <p><strong>Cantidad de estrellas:</strong> ${estrellasStr || "Sin estrellas"}</p>
-    `;
-}
-    
-// Evento para actualizar la nota en tiempo real
-document.querySelectorAll(".evaluacion-integral").forEach(select => {
-    select.addEventListener("change", calcularNotaEvaluacionIntegral);
-});
 }
