@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Evaluación</title>
+    <title>Formulario de Evaluación de Puesto</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1>Formulario de Evaluación</h1>
+            <h1>Formulario de Evaluación de Puesto</h1>
             <p id="fecha"></p>
         </header>
 
@@ -42,80 +42,80 @@
             <button id="btnSiguiente" class="hidden">Siguiente</button>
         </section>
 
-        <!-- Evaluaciones -->
-        <section id="evaluacion" class="hidden collapsible-section">
-            <h2 class="collapsible">Evaluación Integral <span class="toggle-btn">▼</span></h2>
-            <div class="content">
-                <div class="pregunta">
-                    <label>Conocimiento del trabajo: Comprensión y entendimiento de las tareas.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
+<!-- Evaluaciones -->
+<section id="evaluacion" class="hidden collapsible-section">
+    <h2 class="collapsible">Evaluación Integral <span class="toggle-btn">▼</span></h2>
+    <div class="content">
+        <div class="pregunta">
+            <label for="conocimiento">Conocimiento del trabajo: Comprensión y entendimiento de las tareas.(3pts)</label>
+            <select id="conocimiento">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
-                <div class="pregunta">
-                    <label>Responsabilidad: Compromiso en la realización de las tareas y el resultado de las mismas.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
+        <div class="pregunta">
+            <label for="responsabilidad">Responsabilidad: Compromiso en la realización de las tareas y el resultado de las mismas.(3pts)</label>
+            <select id="responsabilidad">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
-                <div class="pregunta">
-                    <label>Búsqueda de la Excelencia: Compromiso con las cosas bien hechas  y las ganas por mejorar.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
+        <div class="pregunta">
+            <label for="excelencia">Búsqueda de la Excelencia: Compromiso con las cosas bien hechas y las ganas por mejorar.(3pts)</label>
+            <select id="excelencia">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
-                <div class="pregunta">
-                    <label>Aceptación de normas y políticas: Disposición para entender, acatar y actuardentro de las directrices y normas de la empresa.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
+        <div class="pregunta">
+            <label for="normas">Aceptación de normas y políticas: Disposición para entender, acatar y actuar dentro de las directrices y normas de la empresa.(3pts)</label>
+            <select id="normas">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
-                <div class="pregunta">
-                    <label>Habilidades sociales: Colaboración espontánea y capacidad para establecer y mantener relaciones cordiales y respetuosas con los demás.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
+        <div class="pregunta">
+            <label for="habilidades">Habilidades sociales: Colaboración espontánea y capacidad para establecer y mantener relaciones cordiales y respetuosas con los demás.(3pts)</label>
+            <select id="habilidades">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
-                <div class="pregunta">
-                    <label>Trabajo en equipo: Capacidad de trabajar cooperativamente y de manera sencilla con otros, dentro y fuera de su área de trabajo.(3pts)</label>
-                    <select class="evaluacion-integral">
-                        <option value="0">--SELECCIONE--</option>
-                        <option value="0">No Demostró</option>
-                        <option value="1.5">Demostró Parcialmente</option>
-                        <option value="3">Demostró</option>
-                        <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
-                    </select>
-                </div>
-                <div id="resultadoEvaluacionIntegral" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
-                <button class="btn-siguiente" data-target="evaluacion2">Siguiente</button>
-            </div>
-        </section>
+        <div class="pregunta">
+            <label for="trabajo_equipo">Trabajo en equipo: Capacidad de trabajar cooperativamente y de manera sencilla con otros, dentro y fuera de su área de trabajo.(3pts)</label>
+            <select id="trabajo_equipo">
+                <option value="0">--SELECCIONE--</option>
+                <option value="0">No Demostró</option>
+                <option value="1.5">Demostró Parcialmente</option>
+                <option value="3">Demostró</option>
+                <option value="3" data-estrella="true">Demostró Totalmente ⭐</option>
+            </select>
+        </div>
 
+        <div id="resultadoEvaluacionIntegral" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
+        <button class="btn-siguiente" data-target="evaluacion2">Siguiente</button>
+    </div>
+</section>
         <section id="evaluacion2" class="hidden collapsible-section">
             <h2 class="collapsible">Evaluación de Competencias Profesionales <span class="toggle-btn">▼</span></h2>
             <div class="content">
@@ -126,7 +126,7 @@
                             <th>No demostró (0 puntos)</th>
                             <th>Demostró parcial (7.5 puntos)</th>
                             <th>Demostró (15 puntos)</th>
-                            <th>Demostró total (15pts)</th>
+                            <th>Demostró total (15 puntos)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -182,7 +182,7 @@
             <h2 class="collapsible">Desempeño y desenvolvimiento general durante el período.<span class="toggle-btn">▼</span></h2>
             <div class="content">
                 <div class="pregunta">
-                    <label>Descripción:</label>
+                    <label>Descripción del desempeño:</label>
                     <select>
                         <option>--SELECCIONE--</option>
                         <option>Crítica / Deficiente</option>
@@ -204,7 +204,7 @@
                 </div>
 
                 <div class="pregunta">
-                    <label>Criterío del jefe inmediato: De acuerdo con lo evaluado ¿El funcionario es apto para continuar en el puesto?</label>
+                    <label>Criterío del jefe inmediato: De acuerdo con lo evaluado ¿El funcionario es apto para ejercer en el puesto?</label>
                     <select>
                         <option>--SELECCIONE--</option>
                         <option>Si</option>
@@ -220,6 +220,7 @@
             <div class="content">
                 <p>Proporcione una evaluación objetiva y detallada sobre las áreas en las que el colaborador podría desarrollar o mejorar habilidades y características. Asegúrese de que la retroalimentación esté claramente expresada por escrito, abarcando aspectos específicos de su desempeño y experiencia hasta la fecha.</p>
                 <input type="text" id="justificación" required>
+                <div id="resultadoFinal" style="margin-top: 20px; font-size: 18px; font-weight: bold;"></div>
                 <button id="btnFinalizar">Finalizar Evaluación</button>
             </div>
         </section>
