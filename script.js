@@ -92,66 +92,92 @@ async function obtenerInformacion() {
     }
 }
 
-// ✅ Función corregida para calcular la nota y estrellas
+// ✅ Función corregida para calcular la nota y estrellas correctamente
 function calcularNotaFinal() {
-    let puntosIntegral = 0;
-    let puntosCompetencias = 0;
-    let estrellasIntegral = 0;
-    let estrellasCompetencias = 0;
+    let puntosTotal = 0;
+    let estrellasTotal = 0;
     let maxPuntos = 93;
 
-    let selects = ["conocimiento", "responsabilidad", "excelencia", "normas", "habilidades", "trabajo_equipo"];
+    // Recorrer todos los select y obtener los valores
+    document.querySelectorAll("select").forEach(select => {
+        let opcionSeleccionada = select.options[select.selectedIndex];
 
-    selects.forEach(id => {
-        let select = document.getElementById(id);
-        if (select) {
-            let opcionSeleccionada = select.options[select.selectedIndex];
-            puntosIntegral += parseFloat(opcionSeleccionada.value);
-            
-            // ✅ CORREGIDO: Obtener correctamente el atributo "data-estrella"
-            if (opcionSeleccionada.getAttribute("data-estrella") === "true") {
-                estrellasIntegral++;
-            }
+        // Sumar los puntos de la opción seleccionada
+        puntosTotal += parseFloat(opcionSeleccionada.value) || 0;
+
+        // Solo sumar estrella si la opción seleccionada tiene data-estrella="true"
+        if (opcionSeleccionada.hasAttribute("data-estrella") && opcionSeleccionada.getAttribute("data-estrella") === "true") {
+            estrellasTotal++;
         }
     });
 
+    // Recorrer todos los radio buttons seleccionados
     document.querySelectorAll("input[type='radio']:checked").forEach(radio => {
-        puntosCompetencias += parseFloat(radio.value);
-        if (radio.getAttribute("data-estrella") === "true") {
-            estrellasCompetencias++;
+        puntosTotal += parseFloat(radio.value) || 0;
+
+        // Solo sumar estrella si el radio seleccionado tiene data-estrella="true"
+        if (radio.hasAttribute("data-estrella") && radio.getAttribute("data-estrella") === "true") {
+            estrellasTotal++;
         }
     });
 
-    let totalPuntos = puntosIntegral + puntosCompetencias;
-    let notaFinal = (totalPuntos / maxPuntos) * 100;
-    notaFinal = Math.round(notaFinal * 100) / 100;
+    // Calcular la nota en base a 100
+    let notaFinal = Math.round((puntosTotal / maxPuntos) * 100);
 
-    let totalEstrellas = estrellasIntegral + estrellasCompetencias;
-    if (totalEstrellas > 11) {
-        totalEstrellas = 11;
-    }
+    // Asegurar que las estrellas no sean más de 11 ni negativas
+    estrellasTotal = Math.max(0, Math.min(estrellasTotal, 11));
 
-    document.getElementById("resultadoFinal").innerHTML = `
+    // Guardar el total de estrellas como un atributo para evitar problemas de extracción
+    let resultadoElement = document.getElementById("resultadoFinal");
+    resultadoElement.setAttribute("data-estrellas-totales", estrellasTotal);
+
+    // Mostrar resultados
+    resultadoElement.innerHTML = `
         <p><strong>Nota Final:</strong> ${notaFinal} / 100</p>
-        <p><strong>Total de Estrellas:</strong> ${totalEstrellas} / 11 → ${"⭐".repeat(totalEstrellas)}</p>
+        <p><strong>Total de Estrellas:</strong> ${estrellasTotal} / 11 → ${estrellasTotal > 0 ? "⭐".repeat(estrellasTotal) : "Sin estrellas"}</p>
     `;
 }
 
+
 // ✅ Función corregida para enviar los datos
 function enviarDatos() {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwTlGVP9Fq_Q1Tu9Azh9Em4R8pPw02IudL4b6KxG6TUUv0dVTmc2NOsCmV0flR1rxDp3w/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxu5xHaDAcAPUYoOoncDrekShmGqRIag4N2iLGACgHsTRkL9MhDTsBxSq-wn0xyDsFuPA/exec';
 
+    const resultadoElement = document.getElementById("resultadoFinal");
+    
     const formData = {
         cedulaEvaluado: document.getElementById("cedulaEvaluado").value,
         cedulaEvaluador: document.getElementById("cedulaEvaluador").value,
+
+        // Evaluación Integral
         conocimiento: document.getElementById("conocimiento").value,
         responsabilidad: document.getElementById("responsabilidad").value,
         excelencia: document.getElementById("excelencia").value,
         normas: document.getElementById("normas").value,
         habilidades: document.getElementById("habilidades").value,
         trabajo_equipo: document.getElementById("trabajo_equipo").value,
-        notaFinal: document.getElementById("resultadoFinal").innerText.match(/\d+(\.\d+)?/g)[0],
-        estrellasTotales: document.getElementById("resultadoFinal").innerText.match(/\d+/g)[1]
+
+        // Evaluación de Competencias Profesionales
+        comportamiento_individual: document.querySelector('input[name="comportamiento_individual"]:checked')?.value || "",
+        calidad_trabajo: document.querySelector('input[name="calidad_trabajo"]:checked')?.value || "",
+        relaciones_otros: document.querySelector('input[name="relaciones_otros"]:checked')?.value || "",
+        asimilacion_conocimientos: document.querySelector('input[name="asimilacion_conocimientos"]:checked')?.value || "",
+        adaptabilidad: document.querySelector('input[name="adaptabilidad"]:checked')?.value || "",
+
+        // Desempeño y desenvolvimiento general
+        descripcion: document.getElementById("descripcion").value,
+        prospecto: document.getElementById("prospecto").value,
+        criterio: document.getElementById("criterio").value,
+
+        // Comentarios y resultados
+        comentario: document.getElementById("comentario").value,
+        justificacion: document.getElementById("justificacion").value,
+        
+        // Extraer la nota final correctamente
+        notaFinal: resultadoElement.innerText.match(/Nota Final:\s(\d+)/)?.[1] || "0",
+
+        // Extraer las estrellas correctamente desde el atributo guardado
+        estrellasTotales: resultadoElement.getAttribute("data-estrellas-totales") || "0"
     };
 
     fetch(scriptURL, {
