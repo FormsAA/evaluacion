@@ -141,7 +141,7 @@ function calcularNotaFinal() {
 
 // ✅ Función corregida para enviar los datos
 function enviarDatos() {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxu5xHaDAcAPUYoOoncDrekShmGqRIag4N2iLGACgHsTRkL9MhDTsBxSq-wn0xyDsFuPA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyh78a7FHSyMZOoDYdZz3QL3uTB9HSn3IIkqBI7pVvxyKKqq79NLmyJcSIdJ69S94YsdA/exec';
 
     const resultadoElement = document.getElementById("resultadoFinal");
     
