@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function obtenerInformacion() {
-    const url = "https://script.google.com/macros/s/AKfycbzJy52gJU7Ldf9hNtUsHFm7G8CvLcoFK7inh14nYwglaD9QYeX5-zzDwhdP5zQUVbRDGQ/exec";
+    const url = "https://script.google.com/macros/s/AKfycbzfHhX8A-_tzkMhRpSuuCEXaVP8wOVbBkq0dEW8QD1Z1GY08MrDcEOBK7DNjf3XIuD5wg/exec";
     let cedulaEvaluado = document.getElementById("cedulaEvaluado").value.trim();
     let cedulaEvaluador = document.getElementById("cedulaEvaluador").value.trim();
 
@@ -96,7 +96,7 @@ async function obtenerInformacion() {
 function calcularNotaFinal() {
     let puntosTotal = 0;
     let estrellasTotal = 0;
-    let maxPuntos = 93;
+    let maxPuntos = 98;
 
     // Recorrer todos los select y obtener los valores
     document.querySelectorAll("select").forEach(select => {
@@ -141,7 +141,7 @@ function calcularNotaFinal() {
 
 // ✅ Función corregida para enviar los datos
 function enviarDatos() {
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyh78a7FHSyMZOoDYdZz3QL3uTB9HSn3IIkqBI7pVvxyKKqq79NLmyJcSIdJ69S94YsdA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbza2kMJUuiIH64Ie9sNwoeydXw6LDtRREjYtVeDpKHRaCLMEB08Ceg2hv96JMdEnR5-JQ/exec';
 
     const resultadoElement = document.getElementById("resultadoFinal");
     
